@@ -32,7 +32,7 @@ return {
     -- Ensure LSP servers are installed
     require("mason").setup()
     require("mason-lspconfig").setup({
-      ensure_installed = { "ts_ls", "lua_ls", "gopls", "html", "tailwindcss", "eslint"},
+      ensure_installed = { "ts_ls", "lua_ls", "gopls", "html", "tailwindcss", "cssls", "eslint"},
       handlers = {
         lsp_zero.default_setup,
       },
