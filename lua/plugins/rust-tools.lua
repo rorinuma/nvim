@@ -1,22 +1,29 @@
 return {
   "simrat39/rust-tools.nvim",
   dependencies = { "neovim/nvim-lspconfig" },
-  ft = { "rust" }, -- Only load for Rust files
+  ft = { "rust" },
   opts = {
     server = {
-      -- This will automatically use your existing lsp-zero on_attach
-      -- and capabilities, so no need to redefine them here
       settings = {
         ["rust-analyzer"] = {
           checkOnSave = {
             command = "clippy",
           },
-          -- Add any other rust-analyzer specific settings you want
           cargo = {
             allFeatures = true,
           },
         },
       },
+      -- Add this if you want rust-analyzer to handle formatting
+      on_attach = function(client, bufnr)
+        -- Enable format on save
+        vim.api.nvim_create_autocmd("BufWritePre", {
+          buffer = bufnr,
+          callback = function()
+            vim.lsp.buf.format({ async = false })
+          end,
+        })
+      end,
     },
     tools = {
       inlay_hints = {
