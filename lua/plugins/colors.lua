@@ -35,6 +35,7 @@ return {
     name = "rose-pine",
     config = function()
       require('rose-pine').setup({
+        dark_variant = 'main',
         disable_background = true,
       })
 
@@ -121,5 +122,6 @@ return {
 
   {
     "blazkowolf/gruber-darker.nvim"
-  }
+  },
+  { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...}
 }
